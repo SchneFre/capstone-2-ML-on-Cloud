@@ -3,8 +3,8 @@
 This project is a complete end-to-end machine learning system on AWS for predicting gold prices. It includes:
 
 - A Streamlit Web App (Frontend)
-- A FastAPI Prediction Service (Backend API)
-- An Automated ML Pipeline (Training + Drift Detection)
+- AWS EC2: A FastAPI Prediction Service (Backend API)
+- AWS EC2: An Automated ML Pipeline (Training + Drift Detection)
 - AWS S3 for data and model storage
 
 ---
@@ -49,7 +49,7 @@ A REST API running on an EC2 instance that serves predictions using a trained ML
 
 This is the core intelligence engine of the system. It continuously monitors data, trains models, and automatically updates them when needed.
 
-## Overview
+#### Overview
 
 The ML pipeline runs in an infinite daily loop and performs:
 
