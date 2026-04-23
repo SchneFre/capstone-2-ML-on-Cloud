@@ -10,28 +10,8 @@ This project is a complete end-to-end machine learning system on AWS for predict
 ---
 
 ## System Architecture
-┌───────────────┐
-│   Streamlit   │
-│   Frontend    │
-└──────┬────────┘
-       │ HTTP Request
-       ▼
-┌───────────────┐
-│   FastAPI     │
-│ Prediction API│
-└──────┬────────┘
-       │ Load Model
-       ▼
-┌───────────────┐
-│     AWS S3    │
-│ Model + Data  │
-└──────┬────────┘
-       ▲
-       │
-┌───────────────┐
-│ ML Pipeline   │
-│ (Daily Loop)  │
-└───────────────┘
+
+Streamlit Frontend → sends HTTP request → FastAPI Prediction API → loads model → AWS S3 (model + data) → ML Pipeline (daily loop) → updates models/data back in S3.
 
 
 ---
