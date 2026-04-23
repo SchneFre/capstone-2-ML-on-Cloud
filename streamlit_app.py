@@ -14,7 +14,7 @@ load_dotenv()
 BUCKET_NAME = os.getenv("BUCKET_NAME", "s3-gold-price-fjs")
 PREFIX = os.getenv("PREFIX", "gold-prices/")
 
-API_URL = "http://3.208.16.240:8000/predict"
+API_URL = "http://54.198.181.155:8000/predict"
 
 # =========================
 # S3 CLIENT
