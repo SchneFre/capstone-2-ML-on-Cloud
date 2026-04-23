@@ -18,7 +18,6 @@ Streamlit Frontend → sends HTTP request → FastAPI Prediction API → loads m
 
 ## Components
 
----
 
 ### 1. Streamlit App (Frontend)
 
@@ -44,11 +43,11 @@ A REST API running on an EC2 instance that serves predictions using a trained ML
 - Returns predicted next-day price
 - Includes logging and error handling
 
-# 3. ML Pipeline (Recurring Training System)
+---
+
+### 3. ML Pipeline (Recurring Training System)
 
 This is the core intelligence engine of the system. It continuously monitors data, trains models, and automatically updates them when needed.
-
----
 
 ## Overview
 
