@@ -1,1 +1,83 @@
-# capstone-2-ML-on-Cloud
+# Gold Price Predictor on Cloud (End-to-End ML System)
+
+This project is a complete end-to-end machine learning system on AWS for predicting gold prices. It includes:
+
+- A Streamlit Web App (Frontend)
+- A FastAPI Prediction Service (Backend API)
+- An Automated ML Pipeline (Training + Drift Detection)
+- AWS S3 for data and model storage
+
+---
+
+## System Architecture
+┌───────────────┐
+│   Streamlit   │
+│   Frontend    │
+└──────┬────────┘
+       │ HTTP Request
+       ▼
+┌───────────────┐
+│   FastAPI     │
+│ Prediction API│
+└──────┬────────┘
+       │ Load Model
+       ▼
+┌───────────────┐
+│     AWS S3    │
+│ Model + Data  │
+└──────┬────────┘
+       ▲
+       │
+┌───────────────┐
+│ ML Pipeline   │
+│ (Daily Loop)  │
+└───────────────┘
+
+
+---
+
+## Components
+
+---
+
+### 1. Streamlit App (Frontend)
+
+A simple and interactive UI for predicting gold prices.
+
+#### Features
+
+- Loads latest gold price data from AWS S3  
+- Allows editing of last 5 days' prices  
+- Sends data to FastAPI for prediction  
+- Displays predicted gold price  
+
+---
+
+### 2. FastAPI Prediction API
+
+A REST API running on an EC2 instance that serves predictions using a trained ML model stored in S3.
+
+#### Features
+
+- Loads model dynamically from S3 (`model.pkl`)
+- Accepts last 5 prices
+- Returns predicted next-day price
+- Includes logging and error handling
+
+# 3. ML Pipeline (Recurring Training System)
+
+This is the core intelligence engine of the system. It continuously monitors data, trains models, and automatically updates them when needed.
+
+---
+
+## Overview
+
+The ML pipeline runs in an infinite daily loop and performs:
+
+- Data ingestion from AWS S3  
+- Model training (Linear Regression + Scaling)  
+- Model evaluation (RMSE)  
+- Drift detection (performance comparison)  
+- Conditional retraining  
+- Saving model + metrics back to S3  
+- Continuous monitoring via heartbeat logs  
