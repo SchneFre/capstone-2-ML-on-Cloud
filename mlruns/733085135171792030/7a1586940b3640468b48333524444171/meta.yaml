@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Ironhack/Capstone%202/mlruns/733085135171792030/7a1586940b3640468b48333524444171/artifacts
+end_time: 1776065897447
+entry_point_name: ''
+experiment_id: '733085135171792030'
+lifecycle_stage: active
+run_id: 7a1586940b3640468b48333524444171
+run_name: Neural_Network_MLP
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776065894613
+status: 3
+tags: []
+user_id: Friedrich

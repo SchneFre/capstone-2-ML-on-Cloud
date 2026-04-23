@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Ironhack/Capstone%202/mlruns/733085135171792030/497d53f4e67b497f90399fffc759eb69/artifacts
+end_time: 1775816867698
+entry_point_name: ''
+experiment_id: '733085135171792030'
+lifecycle_stage: active
+run_id: 497d53f4e67b497f90399fffc759eb69
+run_name: LSTM
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775816858375
+status: 3
+tags: []
+user_id: Friedrich

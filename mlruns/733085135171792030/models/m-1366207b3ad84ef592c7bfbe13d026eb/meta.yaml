@@ -1,0 +1,10 @@
+artifact_location: file:///c:/Ironhack/Capstone%202/mlruns/733085135171792030/models/m-1366207b3ad84ef592c7bfbe13d026eb/artifacts
+creation_timestamp: 1775813498538
+experiment_id: '733085135171792030'
+last_updated_timestamp: 1775813500932
+model_id: m-1366207b3ad84ef592c7bfbe13d026eb
+model_type: null
+name: model
+source_run_id: d46a6b4106e24f079f7180aca1441974
+status: 2
+status_message: null

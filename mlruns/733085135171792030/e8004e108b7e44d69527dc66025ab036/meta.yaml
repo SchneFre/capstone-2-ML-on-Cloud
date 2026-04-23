@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Ironhack/Capstone%202/mlruns/733085135171792030/e8004e108b7e44d69527dc66025ab036/artifacts
+end_time: 1775812729004
+entry_point_name: ''
+experiment_id: '733085135171792030'
+lifecycle_stage: active
+run_id: e8004e108b7e44d69527dc66025ab036
+run_name: ARIMA
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775812728812
+status: 3
+tags: []
+user_id: Friedrich

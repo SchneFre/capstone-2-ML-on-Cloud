@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Ironhack/Capstone%202/mlruns/733085135171792030/646a77a7d2f948c787b9daf5e6ed7426/artifacts
+end_time: 1776065899929
+entry_point_name: ''
+experiment_id: '733085135171792030'
+lifecycle_stage: active
+run_id: 646a77a7d2f948c787b9daf5e6ed7426
+run_name: linear_regression_5_lags
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776065897481
+status: 3
+tags: []
+user_id: Friedrich

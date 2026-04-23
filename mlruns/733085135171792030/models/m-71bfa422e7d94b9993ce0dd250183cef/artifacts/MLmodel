@@ -1,0 +1,20 @@
+artifact_path: file:///c:/Ironhack/Capstone%202/mlruns/733085135171792030/models/m-71bfa422e7d94b9993ce0dd250183cef/artifacts
+flavors:
+  keras:
+    data: data
+    keras_backend: tensorflow
+    keras_version: 3.10.0
+    save_exported_model: false
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.keras
+    python_version: 3.9.13
+mlflow_version: 3.1.4
+model_id: m-71bfa422e7d94b9993ce0dd250183cef
+model_size_bytes: 404424
+model_uuid: m-71bfa422e7d94b9993ce0dd250183cef
+prompts: null
+run_id: b4227cbcbc3149d082d3e0aea12b7e68
+utc_time_created: '2026-04-10 10:36:32.675366'

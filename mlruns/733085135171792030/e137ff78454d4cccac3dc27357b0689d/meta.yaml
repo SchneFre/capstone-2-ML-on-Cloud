@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Ironhack/Capstone%202/mlruns/733085135171792030/e137ff78454d4cccac3dc27357b0689d/artifacts
+end_time: 1775817704515
+entry_point_name: ''
+experiment_id: '733085135171792030'
+lifecycle_stage: active
+run_id: e137ff78454d4cccac3dc27357b0689d
+run_name: ARIMA_like_linear_model
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775817701951
+status: 3
+tags: []
+user_id: Friedrich
