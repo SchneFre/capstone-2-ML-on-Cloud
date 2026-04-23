@@ -14,7 +14,13 @@ load_dotenv()
 BUCKET_NAME = os.getenv("BUCKET_NAME", "s3-gold-price-fjs")
 PREFIX = os.getenv("PREFIX", "gold-prices/")
 
-API_URL = "http://54.198.181.155:8000/predict"
+# =========================
+# STREAMLIT UI (API INPUT)
+# =========================
+st.title("💰 Gold Price Predictor (Next Day)")
+
+api_ip = st.text_input("Enter API IP Address", value="54.198.181.155")
+API_URL = f"http://{api_ip}:8000/predict"
 
 # =========================
 # S3 CLIENT
@@ -41,18 +47,13 @@ def get_last_5_days():
         raise ValueError("Missing 'close' column in dataset")
 
     closes = df["close"].dropna().values
-
     return closes[-5:].tolist()
 
-
 # =========================
-# STREAMLIT UI
+# LOAD DATA
 # =========================
-st.title("💰 Gold Price Predictor (Next Day)")
-
 st.write("Edit the last 5 days of gold prices and predict today's price.")
 
-# Load data
 try:
     last_5 = get_last_5_days()
 except Exception as e:
@@ -62,7 +63,6 @@ except Exception as e:
 st.subheader("📊 Last 5 Days Prices")
 
 prices = []
-
 for i in range(5):
     val = st.number_input(
         f"Day {i+1}",
@@ -83,9 +83,7 @@ if st.button("🚀 Predict Today's Price"):
 
         if response.status_code == 200:
             result = response.json()["predicted_price"]
-
             st.success(f"🎯 Predicted Gold Price: {result:.2f}")
-
         else:
             st.error(f"API Error: {response.text}")
 
