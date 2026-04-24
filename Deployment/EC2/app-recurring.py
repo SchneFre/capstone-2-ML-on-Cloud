@@ -37,11 +37,50 @@ RMSE_KEY = os.getenv("RMSE_KEY", "models/rmse.json")
 LAGS = int(os.getenv("LAGS", 5))
 THRESHOLD_PERCENT = float(os.getenv("THRESHOLD_PERCENT", 0.10))
 
+EMAIL_SENDER = os.getenv("EMAIL_SENDER")
+EMAIL_RECIPIENT = os.getenv("EMAIL_RECIPIENT")
+AWS_REGION = os.getenv("AWS_REGION", "eu-central-1")
+
 # =============================
 # AWS CLIENT
 # =============================
 log("☁️ Connecting to S3")
 s3_client = boto3.client("s3")
+
+# =============================
+# SES CLIENT
+# =============================
+log("📧 Connecting to SES")
+ses_client = boto3.client("ses", region_name=AWS_REGION)
+
+# =============================
+# EMAIL FUNCTION 
+# =============================
+def send_email_notification(current_rmse, previous_rmse):
+    try:
+        subject = "Model Drift Detected"
+
+        body = (
+            "Model performance degradation detected.\n\n"
+            f"Previous RMSE: {previous_rmse}\n"
+            f"Current RMSE: {current_rmse}\n"
+            f"Threshold Percent: {THRESHOLD_PERCENT * 100}%\n"
+            f"Timestamp (UTC): {datetime.utcnow()}\n"
+        )
+
+        ses_client.send_email(
+            Source=EMAIL_SENDER,
+            Destination={"ToAddresses": [EMAIL_RECIPIENT]},
+            Message={
+                "Subject": {"Data": subject},
+                "Body": {"Text": {"Data": body}}
+            }
+        )
+
+        log("📧 Email notification sent")
+
+    except Exception as error:
+        log(f"❌ Failed to send email: {str(error)}")
 
 # =============================
 # LOAD LATEST DATA
@@ -185,18 +224,12 @@ while True:
         model = load_model()
         previous_rmse = load_previous_rmse()
 
-        # =============================
-        # CASE 1: NO MODEL EXISTS
-        # =============================
         if model is None:
             log("🆕 No model exists → training new model")
 
             model, rmse = train_model(X, y)
             save_model(model, rmse)
 
-        # =============================
-        # CASE 2: MODEL EXISTS
-        # =============================
         else:
             log("🔍 Evaluating existing model")
 
@@ -208,9 +241,6 @@ while True:
 
             log(f"📊 CURRENT RMSE={rmse:.4f}, PREVIOUS RMSE={previous_rmse}")
 
-            # =============================
-            # DRIFT CHECK
-            # =============================
             if previous_rmse is None:
                 log("⚠️ No baseline RMSE → updating baseline")
                 save_model(model, rmse)
@@ -220,6 +250,9 @@ while True:
 
                 if degraded:
                     log("⚠️ MODEL PERFORMANCE DECREASED → retraining")
+
+                    # EMAIL TRIGGER 
+                    send_email_notification(rmse, previous_rmse)
 
                     model, new_rmse = train_model(X, y)
                     save_model(model, new_rmse)
@@ -232,11 +265,8 @@ while True:
     except Exception as e:
         log(f"❌ ERROR IN PIPELINE: {str(e)}")
 
-    # =============================
-    # DAILY SLEEP + HEARTBEAT
-    # =============================
-    sleep_seconds = 86400  # 24 hours
-    heartbeat_interval = 300  # 5 minutes
+    sleep_seconds = 86400
+    heartbeat_interval = 300
 
     log("⏳ Sleeping for 24 hours (heartbeat every 5 minutes)")
 
