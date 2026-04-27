@@ -6,6 +6,7 @@ This project is a complete end-to-end machine learning system on AWS for predict
 - AWS EC2: A FastAPI Prediction Service (Backend API)
 - AWS EC2: An Automated ML Pipeline (Training + Drift Detection)
 - AWS S3 for data and model storage
+- AWS Lambda Function to fetch gold price data
 
 ---
 
