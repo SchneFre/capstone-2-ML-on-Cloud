@@ -59,6 +59,7 @@ The ML pipeline runs in an infinite daily loop and performs:
 - Drift detection (performance comparison)  
 - Conditional retraining  
 - Saving model + metrics back to S3  
+- Sends email notification when retraining was neccessary
 - Continuous monitoring via heartbeat logs  
 
 ---
