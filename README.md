@@ -60,3 +60,17 @@ The ML pipeline runs in an infinite daily loop and performs:
 - Conditional retraining  
 - Saving model + metrics back to S3  
 - Continuous monitoring via heartbeat logs  
+
+---
+
+### 4. AWS Lambda Data Ingestion (Gold Price Fetcher)
+
+This component is responsible for automatically fetching historical gold price data from Yahoo Finance and storing it in AWS S3.
+It acts as the data source for the entire ML pipeline.
+
+#### Overview
+
+- Fetch daily gold price data
+- Convert API response into structured CSV format
+- Store the dataset in AWS S3
+- Provide fresh data for training and prediction systems
